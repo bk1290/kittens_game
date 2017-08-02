@@ -7,6 +7,7 @@ Automatically Observe Astronomical Events
 autoObserve = setInterval(
 	function() {
 		$("#gameLog").find("input").click(); 
+		console.log("I saw the sign.");
 	}
 	, 2 * 1000
 );
@@ -53,10 +54,23 @@ autoHunt = setInterval(function() {
     var catpower = gamePage.resPool.get('manpower');
     if (catpower.value / catpower.maxValue > 0.95) {
         $("a:contains('Send hunters')").click();
-        if (gamePage.workshop.getCraft('parchment').unlocked)  { gamePage.craftAll('parchment');  }
-        if (gamePage.workshop.getCraft('manuscript').unlocked) { gamePage.craftAll('manuscript'); }
-        if (gamePage.workshop.getCraft('compedium').unlocked)  { gamePage.craftAll('compedium');  }
-        if (gamePage.workshop.getCraft('blueprint').unlocked)  { gamePage.craftAll('blueprint');  }
+	console.log('i did a hunt.');
+        if (gamePage.workshop.getCraft('parchment').unlocked)  { 
+		gamePage.craftAll('parchment');  
+		console.log('crafted all the parchment');
+	}
+        if (gamePage.workshop.getCraft('manuscript').unlocked) { 
+		gamePage.craftAll('manuscript'); 
+		console.log('crafted all the manuscript');
+	}
+        if (gamePage.workshop.getCraft('compedium').unlocked)  { 
+		gamePage.craftAll('compedium');  
+		console.log('crafted all the compendiums');
+	}
+        if (gamePage.workshop.getCraft('blueprint').unlocked)  { 
+		gamePage.craftAll('blueprint');  
+		console.log('crafted all the blueprints');
+	}
     }
 }, 5 * 1000);
 
