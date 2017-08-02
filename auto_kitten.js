@@ -65,3 +65,30 @@ autoHunt = setInterval(function() {
 If thing is maxed craft one unit of what thing produces
 ------------------------------------------------------
 */
+autoCrafter = setInterval(
+	function() {
+
+		// Pull all resources that can be crafted to keep from being capped
+		var coal = gamePage.resPool.get('coal')
+		var iron = gamePage.resPool.get('iron')
+		var wood = gamePage.resPool.get('wood')
+		var minerals = gamePage.resPool.get('minerals')
+
+		if (wood.value / wood.maxValue > 0.95) {
+			gamePage.craft('beam',1)
+			console.log("crafted a beam")
+		}
+
+		if (coal.value / coal.maxValue > 0.95) {
+			gamePage.craft('steel',1)
+			console.log("crafted some steel")
+		}
+
+		if (minerals.value / minerals.maxValue > 0.95) {
+			gamePage.craft('slab',1)		
+			console.log("crafted a slab")	
+		}
+
+	}
+	, 2 * 1000
+);
