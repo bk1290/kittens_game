@@ -19,6 +19,7 @@ Refine Catnip if over 50%
 */
 autoCatnip = setInterval(function() {
 	var catnip = gamePage.resPool.get('catnip');
+	var wood = gamePage.resPool.get('wood');
 	var calendar = gamePage.calendar
 
 	// Don't run if losing catnip per second
@@ -27,11 +28,14 @@ autoCatnip = setInterval(function() {
 	// only run if 50+% of total capacity
 	if (catnip.value / catnip.maxValue < 0.5) { return; }
 
+	// Don't run if wood is almost maxed.
+	if (wood.value / wood.maxValue > 0.9) { return; }
+	
 	// stockpile extra at end of autumn
 	if (calendar.season == 2 && calendar.day > 50) { return; }
 
-	gamePage.craftAll('wood');
-	console.log("Crafted Wood");
+	gamePage.craft('wood',10);
+	console.log("Crafted 10 Wood");
 }, 5 * 1000);
 
 /*
@@ -55,3 +59,9 @@ autoHunt = setInterval(function() {
         if (gamePage.workshop.getCraft('blueprint').unlocked)  { gamePage.craftAll('blueprint');  }
     }
 }, 5 * 1000);
+
+/*
+-------------------------------------------------------
+If thing is maxed craft one unit of what thing produces
+------------------------------------------------------
+*/
